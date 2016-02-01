@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server --content-base build"
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "BSD-2-Clause",
   "devDependencies": {
     "webpack": "~2.0.6-beta",
     "webpack-dev-server": "~1.14.1",
-    "webpack-merge": "~0.7.3"
+    "webpack-merge": "~0.7.3",
+    "style-loader": "~0.13.0",
+    "css-loader": "~0.23.1"
   }
 }
