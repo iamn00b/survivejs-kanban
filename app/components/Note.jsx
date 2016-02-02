@@ -31,7 +31,13 @@ export default class Note extends React.Component {
 
   renderDisplayNote = () => {
     return (
-      <div onClick={this.editTask}>{this.props.task}</div>
+      <div onClick={this.editTask}>
+        <span>{this.props.task}</span>
+        {this.props.onDelete ? 
+          <button onClick={this.props.onDelete}>x</button>
+        :
+          null}
+      </div>
     );
   };
 
