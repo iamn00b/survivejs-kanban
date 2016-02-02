@@ -22,17 +22,24 @@ const common = {
         extensions: ['', '.js', '.jsx']
     },
     module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loaders: ['style', 'css'],
-                include: PATHS.app
-            },
-            {
-                test: /\.jsx?$/,
-                loaders: ['babel?cacheDirectory']
-            }
-        ]
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['eslint'],
+          include: PATHS.app
+        }
+      ],
+      loaders: [
+          {
+              test: /\.css$/,
+              loaders: ['style', 'css'],
+              include: PATHS.app
+          },
+          {
+              test: /\.jsx?$/,
+              loaders: ['babel?cacheDirectory']
+          }
+      ]
     }
 }
 
