@@ -1,3 +1,11 @@
 import React from 'react';
 
-export default ({task}) => <div>{task}</div>;
+export default class Note extends React.Component {
+  render() {
+    const task = this.props.task;
+
+    return (
+      <div>{task}</div>
+    );
+  }
+}
