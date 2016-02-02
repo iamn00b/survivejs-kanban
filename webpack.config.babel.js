@@ -1,8 +1,9 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const webpack = require('webpack');
+import path from 'path';
+import webpack from 'webpack';
+import merge from 'webpack-merge';
 
-require('es6-promise').polyfill();
+import es6promise from 'es6-promise';
+es6promise.polyfill();
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
