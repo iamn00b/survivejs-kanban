@@ -6,6 +6,8 @@ import es6promise from 'es6-promise';
 es6promise.polyfill();
 
 const TARGET = process.env.npm_lifecycle_event;
+process.env.BABEL_ENV = TARGET;
+
 const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build')
