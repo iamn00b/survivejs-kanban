@@ -6,7 +6,7 @@ export default class Notes extends React.Component {
     const {notes, onEdit, onDelete} = this.props;
     
     return (
-      <ul>{notes.map(note =>
+      <ul className="notes">{notes.map(note =>
         <li key={note.id}>
           <Note 
             task={note.task}
