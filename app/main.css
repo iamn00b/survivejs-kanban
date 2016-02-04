@@ -12,13 +12,13 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   margin: 1em;
   background: #fafafa;
-  color: white;
-  font-weight: 700;
 }
 
 .laneHeader {
   background: #2ecc71;
   padding: 1em;
+  color: white;
+  font-weight: 700;
 }
 
 .laneAddNote {
