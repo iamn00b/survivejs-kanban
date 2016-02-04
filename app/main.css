@@ -1,9 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
-  background: cornsilk;
+  background: #ededed;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+}
+
+.lane {
+  display: table-cell;
+  width: 350px;
+}
+
+.laneHeader {
+  background: #2ecc71;
+  padding: 1em;
+  margin: 1em;
+}
+
+.laneAddNote {
+  float: left;
+  margin-right: 1em;
 }
 
 .notes {
