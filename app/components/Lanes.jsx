@@ -1,13 +1,16 @@
 import React from 'react';
+import Lane from './Lane';
 
 export default class Lanes extends React.Component {
   render() {
+    const {lanes, ...props} = this.props;
+
     return (
-      <ul>
-        {this.props.lanes.map(lane => 
-          <li>{lane.name}</li>
+      <div className="lanes">
+        {lanes.map(lane => 
+          <Lane key={lane.id} lane={lane} />
         )}
-      </ul>
+      </div>
     );
   }
 }
