@@ -15,6 +15,8 @@ class NoteStore {
     const notes = this.notes.concat(note);
 
     this.setState({ notes });
+
+    return note;
   }
 
   update(updatedNote) { 
