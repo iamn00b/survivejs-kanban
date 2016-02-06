@@ -18,7 +18,7 @@ class LaneStore {
     this.setState({ lanes }); 
   }
 
-  attachFromLane({laneId, noteId}) {
+  attachToLane({laneId, noteId}) {
     const lanes = this.lanes.map(lane => {
       if (lane.id === laneId) {
         if (lane.notes.indexOf(noteId) === -1) {
