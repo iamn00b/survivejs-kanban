@@ -1,15 +1,18 @@
 import React from 'react';
-import Note from './Note.jsx';
+import Editable from './Editable.jsx';
 
 export default class Notes extends React.Component {
   render() {
-    const {notes, onEdit, onDelete} = this.props;
+    const {notes, onValueClick, onEdit, onDelete} = this.props;
     
     return (
       <ul className="notes">{notes.map(note =>
         <li key={note.id}>
-          <Note 
-            task={note.task}
+          <Editable
+            className="note"
+            editing={note.editing} 
+            value={note.value}
+            onValueClick={onValueClick.bind(null, note.id)}
             onEdit={onEdit.bind(null, note.id)}
             onDelete={onDelete.bind(null, note.id)} />
         </li>
