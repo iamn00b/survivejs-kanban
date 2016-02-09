@@ -13,7 +13,6 @@ export default class Lane extends React.Component {
 
     const laneId = props.lane.id;
 
-    this.addNote = this.addNote.bind(this, laneId);
     this.deleteNote = this.deleteNote.bind(this, laneId);
   }
   render() {
@@ -44,9 +43,10 @@ export default class Lane extends React.Component {
     );
   }
 
-  addNote = (laneId, e) => {
+  addNote = (e) => {
     e.stopPropagation();
 
+    const laneId = this.props.lane.id;
     const note = NoteActions.create({task: 'New task'});
 
     LaneActions.attachToLane({
@@ -55,29 +55,43 @@ export default class Lane extends React.Component {
     });
   };
   editNote(id, task) {
-    NoteActions.update({id, task});
+    NoteActions.update({
+      id,
+      task, 
+      editing: false
+    });
   }
   deleteNote(laneId, noteId) {
     LaneActions.detachFromLane({laneId, noteId});
     NoteActions.delete(noteId);
   }
+  activateNoteEdit(id) {
+    NoteActions.update({
+      id: id,
+      editing: true
+    });
+  }
 
   editName = (name) => {
     const laneId = this.props.lane.id;
 
-    console.log(`edit lane ${laneId} name using ${name}`);
+    LaneActions.update({
+      id: laneId,
+      name: name,
+      editing: false
+    });
   };
   deleteLane = () => {
     const laneId = this.props.lane.id;
 
-    console.log(`delete lane ${laneId}`);
+    LaneActions.delete(laneId);
   };
   activateLaneEdit = () => {
     const laneId = this.props.lane.id;
 
-    console.log(`activate lane ${laneId} edit`);
+    LaneActions.update({
+      id: laneId,
+      editing: true
+    });
   };
-  activateNoteEdit(id) {
-    console.log(`activate note ${id} edit`);
-  }
 }
