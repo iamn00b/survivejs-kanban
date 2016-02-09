@@ -13,6 +13,7 @@ export default class Notes extends React.Component {
           className="note" 
           key={note.id}
           id={note.id}
+          editing={note.editing}
           onMove={LaneActions.move}>
             <Editable
               editing={note.editing} 
