@@ -32,19 +32,6 @@ body {
   margin-right: 1em;
 }
 
-.laneName {
-  float: left;
-}
-
-.laneHeader .deleteBtn {
-  float: right;
-  visibility: hidden;
-}
-
-.laneHeader:hover .deleteBtn {
-  visibility: visible;
-}
-
 .notes {
   margin: 0.5em;
   padding-left: 0;
@@ -60,18 +47,27 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.note .deleteBtn {
+.note .deleteBtn,
+.laneHeader .deleteBtn  {
   float: right;
   visibility: hidden;
 }
 
-.note:hover .deleteBtn {
+.note:hover .deleteBtn,
+.laneHeader:hover .deleteBtn {
   visibility: visible;
 }
 
-.note input[type="text"] {
+.note input[type="text"],
+.laneName input[type="text"] {
   border: none;
   background: none;
   border-bottom: 1px solid #333;
   font-size: 14px;
+}
+
+.laneName input[type="text"] {
+  float: left;
+  width: auto;
+  color: white;
 }
