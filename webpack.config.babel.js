@@ -44,7 +44,7 @@ const common = {
           }
       ]
     }
-}
+};
 
 const devConfiguration = {
     devServer: {
@@ -68,12 +68,31 @@ const devConfiguration = {
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
-}
+};
+
+const prodConfiguration = {
+  plugins: [
+    new webpack.DefinePlugin({
+       'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  ],
+  resolve: {
+    alias: {
+      'react': 'react-lite',
+      'react-dom': 'react-lite'
+    }
+  }
+};
 
 if (TARGET === 'start' || !TARGET) {
     module.exports = merge(common, devConfiguration);
 }
 
 if (TARGET === 'build') {
-    module.exports = merge(common, {});
+    module.exports = merge(common, prodConfiguration);
 }

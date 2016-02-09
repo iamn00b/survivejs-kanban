@@ -36,6 +36,7 @@
     "node-uuid": "~1.4.7",
     "alt-utils": "~1.0.0",
     "alt": "~0.18.2",
-    "alt-container": "~1.0.1"
+    "alt-container": "~1.0.1",
+    "react-lite": "0.0.21"
   }
 }
