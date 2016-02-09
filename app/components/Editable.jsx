@@ -2,6 +2,14 @@ import React from 'react';
 
 export default class Editable extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inputValue : props.value
+    };
+  }
+
   render() {
     const {editing, ...props} = this.props;
 
@@ -21,12 +29,13 @@ export default class Editable extends React.Component {
       <input 
         type="text"
         ref={
-          (e) => e ? e.selectionStart = this.props.value.length : null
+          (e) => e ? e.selectionStart = this.state.inputValue.length : null
         }
+        value={this.state.inputValue}
         autoFocus={true}
-        defaultValue={this.props.value}
         onBlur={this.finishEdit}
-        onKeyPress={this.checkEnter} />
+        onKeyPress={this.checkEnter}
+        onChange={this.handleChange} />
     );
   };
 
@@ -42,13 +51,19 @@ export default class Editable extends React.Component {
     );
   };
 
-  checkEnter = (e) => {
-    if (e.key === 'Enter')
-      this.finishEdit(e);
+  handleChange = (e) => {
+    const inputValue = e.target.value;
+
+    this.setState({ inputValue });
   };
 
-  finishEdit = (e) => {
-    const value = e.target.value;
+  checkEnter = (e) => {
+    if (e.key === 'Enter')
+      this.finishEdit();
+  };
+
+  finishEdit = () => {
+    const value = this.state.inputValue;
 
     if (this.props.onEdit && value.trim()) {
       this.props.onEdit(value);
