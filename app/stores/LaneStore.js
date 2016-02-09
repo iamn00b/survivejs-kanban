@@ -18,6 +18,23 @@ class LaneStore {
     this.setState({ lanes }); 
   }
 
+  update(updatedLane) {
+    const lanes = this.lanes.map(lane => {
+      if (lane.id === updatedLane.id)
+        return Object.assign({}, lane, updatedLane);
+
+      return lane;
+    });
+
+    this.setState({lanes});
+  }
+
+  delete(laneId) {
+    const lanes = this.lanes.filter(lane => lane.id !== laneId);
+
+    this.setState({lanes});
+  }
+
   attachToLane({laneId, noteId}) {
     const lanes = this.lanes.map(lane => {
       if (lane.id === laneId) {
