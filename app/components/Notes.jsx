@@ -1,4 +1,5 @@
 import React from 'react';
+import Note from './Note.jsx';
 import Editable from './Editable.jsx';
 
 export default class Notes extends React.Component {
@@ -7,15 +8,14 @@ export default class Notes extends React.Component {
     
     return (
       <ul className="notes">{notes.map(note =>
-        <li key={note.id}>
+        <Note className="note" key={note.id}>
           <Editable
-            className="note"
             editing={note.editing} 
             value={note.task}
             onValueClick={onValueClick.bind(null, note.id)}
             onEdit={onEdit.bind(null, note.id)}
             onDelete={onDelete.bind(null, note.id)} />
-        </li>
+        </Note>
       )}</ul>
     );
   }
