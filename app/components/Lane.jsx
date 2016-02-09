@@ -7,6 +7,27 @@ import NoteActions from '../actions/NoteActions';
 import LaneActions from '../actions/LaneActions';
 import NoteStore from '../stores/NoteStore';
 
+import {DropTarget} from 'react-dnd';
+import ItemTypes from '../constants/itemTypes';
+
+const laneTarget = {
+  hover(targetProps, monitor) {
+    const sourceProps = monitor.getItem();
+    const sourceId = sourceProps.id;
+    const targetId = targetProps.lane.id;
+    
+    if (targetProps.lane.notes.length === 0){
+      LaneActions.attachToLane({
+        laneId: targetId,
+        noteId: sourceId
+      });
+    }
+  }
+};
+
+@DropTarget(ItemTypes.NOTE, laneTarget, (connect) => ({
+  connectDropTarget: connect.dropTarget()
+}))
 export default class Lane extends React.Component {
   constructor(props) {
     super(props);
@@ -16,9 +37,9 @@ export default class Lane extends React.Component {
     this.deleteNote = this.deleteNote.bind(this, laneId);
   }
   render() {
-    const {lane, ...props} = this.props;
+    const {lane, connectDropTarget, ...props} = this.props;
 
-    return (
+    return connectDropTarget(
       <div className="lane" {...props}>
         <div className="laneHeader" onClick={this.activateLaneEdit}>
           <button className="laneAddNote" onClick={this.addNote}>+</button>
