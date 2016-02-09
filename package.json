@@ -37,6 +37,8 @@
     "alt-utils": "~1.0.0",
     "alt": "~0.18.2",
     "alt-container": "~1.0.1",
-    "react-lite": "0.0.21"
+    "react-lite": "0.0.21",
+    "react-dnd": "~2.0.2",
+    "react-dnd-html5-backend": "~2.0.2"
   }
 }
