@@ -80,13 +80,7 @@ const prodConfiguration = {
         warnings: false
       }
     })
-  ],
-  resolve: {
-    alias: {
-      'react': 'react-lite',
-      'react-dom': 'react-lite'
-    }
-  }
+  ]
 };
 
 if (TARGET === 'start' || !TARGET) {
