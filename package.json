@@ -28,7 +28,9 @@
     "babel-loader": "~6.2.2",
     "webpack-dev-server": "~1.14.1",
     "webpack": "~1.12.13",
-    "babel-preset-es2015": "~6.5.0"
+    "babel-preset-es2015": "~6.5.0",
+    "html-webpack-template": "~4.0.0",
+    "html-webpack-plugin": "~2.8.1"
   },
   "dependencies": {
     "react-dom": "~0.14.7",

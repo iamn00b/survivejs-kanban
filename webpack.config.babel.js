@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import pkg from './package.json';
 
 import es6promise from 'es6-promise';
@@ -46,13 +47,19 @@ const common = {
               include: PATHS.app
           }
       ]
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: 'node_modules/html-webpack-template/index.ejs',
+        title: 'Kanban app',
+        appMountId: 'app',
+        inject: false
+      })
+    ]
 };
 
 const devConfiguration = {
     devServer: {
-      contentBase: PATHS.build,
-
       // Enable history API fallback so HTML5 History API based
       // routing works. This is a good default that will come
       // in handy in more complicated setups.
@@ -81,6 +88,11 @@ const prodConfiguration = {
       // (no package.json main).
       return v !== 'alt-utils';
     })
+  },
+  output: {
+    path: PATHS.build,
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[chunkhash].js'
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
