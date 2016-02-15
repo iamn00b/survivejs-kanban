@@ -2,6 +2,8 @@ import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+
 import pkg from './package.json';
 
 import es6promise from 'es6-promise';
@@ -12,12 +14,14 @@ process.env.BABEL_ENV = TARGET;
 
 const PATHS = {
     app: path.join(__dirname, 'app'),
-    build: path.join(__dirname, 'build')
+    build: path.join(__dirname, 'build'),
+    style: path.join(__dirname, 'app/main.css')
 };
 
 const common = {
     entry: {
-      app: PATHS.app
+      app: PATHS.app,
+      style: PATHS.style
     },
     output: {
         path: PATHS.build,
@@ -36,11 +40,6 @@ const common = {
         }
       ],
       loaders: [
-          {
-              test: /\.css$/,
-              loaders: ['style', 'css'],
-              include: PATHS.app
-          },
           {
               test: /\.jsx?$/,
               loaders: ['babel?cacheDirectory'],
@@ -74,7 +73,16 @@ const devConfiguration = {
       host: process.env.HOST,
       port: process.env.PORT
     },
-    devtool: 'eval-source-map',
+    devtool: 'eval-source-map', 
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: ['style', 'css'],
+          include: PATHS.app
+        }
+      ]
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
@@ -94,10 +102,21 @@ const prodConfiguration = {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[chunkhash].js'
   },
+  module: {
+    loaders: [
+      // Extract CSS during build
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css'),
+        include: PATHS.app
+      }
+    ]
+  },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     }),
+    new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.DefinePlugin({
        'process.env.NODE_ENV': JSON.stringify('production')
     }),
